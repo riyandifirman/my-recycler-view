@@ -7,6 +7,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 
 // Membuat class ListHeroAdapter yang mewarisi fungsi dari RecyclerView.Adapter
 class ListHeroAdapter(private val listHero: ArrayList<Hero>) : RecyclerView.Adapter<ListHeroAdapter.ListViewHolder>() {
@@ -32,7 +33,9 @@ class ListHeroAdapter(private val listHero: ArrayList<Hero>) : RecyclerView.Adap
         // Membuat variabel val (name, description, photo) yang berfungsi untuk mengambil data dari listHero berdasarkan posisi
         val (name, description, photo) = listHero[position]
         // Mengatur data yang akan ditampilkan
-        holder.imgPhoto.setImageResource(photo)
+        Glide.with(holder.itemView.context)
+            .load(photo)
+            .into(holder.imgPhoto)
         holder.tvName.text = name
         holder.tvDescription.text = description
 
